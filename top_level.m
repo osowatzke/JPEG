@@ -8,5 +8,5 @@ function top_level(image_path, PSNR)
     noisy_image = add_noise(original_image,PSNR);
     
     % display image
-    imshow(noisy_image);
+    imshow(uint8(noisy_image));
 end

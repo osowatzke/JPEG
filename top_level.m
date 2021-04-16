@@ -1,3 +1,4 @@
+
 % function takes PSNR and relative input path of image as an inputs
 function top_level(image_path, PSNR)
     
@@ -7,6 +8,16 @@ function top_level(image_path, PSNR)
     % add noise to image
     noisy_image = add_noise(original_image,PSNR);
     
-    % display image
-    imshow(uint8(noisy_image));
+    % convert noisy image from double to uint8
+    noisy_image = uint8(noisy_image);
+    
+    % display noisy image
+    imshow(noisy_image);
+    
+    % compute mse
+    compute_mse(original_image, noisy_image);
+    
+    % display difference image
+    diff_img(original_image,noisy_image);
+    
 end

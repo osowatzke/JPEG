@@ -8,8 +8,7 @@ function mse = compute_mse(img1, img2)
     % compute MSE 
     mse = immse(img1, img2);
     
-    % display MSE value
-    fprintf('MSE = %.3f \n',mse);
+  
 
 
    

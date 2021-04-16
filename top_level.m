@@ -15,7 +15,9 @@ function top_level(image_path, PSNR)
     imshow(noisy_image);
     
     % compute mse
-    compute_mse(original_image, noisy_image);
+    mse = compute_mse(original_image, noisy_image);
+    % display MSE value
+    fprintf('MSE = %.3f \n',mse);
     
     % display difference image
     diff_img(original_image,noisy_image);

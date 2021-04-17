@@ -8,9 +8,6 @@ function top_level(image_path, PSNR)
     % add noise to image
     noisy_image = add_noise(original_image,PSNR);
     
-    % convert noisy image from double to uint8
-    noisy_image = uint8(noisy_image);
-    
     % display noisy image
     imshow(noisy_image);
     

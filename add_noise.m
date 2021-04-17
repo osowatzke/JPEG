@@ -16,4 +16,7 @@ function noisy_imarray = add_noise(imarray, PSNR)
     % add noise to image to produce noise image
     noisy_imarray = noise_array + double(imarray);
     
+    % convert double to unit8
+    noisy_imarray = uint8(noisy_imarray);
+    
 end

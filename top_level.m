@@ -11,6 +11,10 @@ function top_level(image_path, PSNR)
     % display noisy image
     imshow(noisy_image);
     
+    % functions returns DCT of 8x8 blocks of image
+    % formatted as MxNx3 double array
+    dct_image = fwd_DCT(noisy_image);
+    
     % compute mse
     mse = compute_mse(original_image, noisy_image);
     % display MSE value

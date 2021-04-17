@@ -1,6 +1,6 @@
 
 % function takes PSNR and relative input path of image as an inputs
-function top_level(image_path, PSNR)
+function top_level(image_path, PSNR, qf)
     
     % read RGB components of images and format in MXNX3 array
     original_image = imread(image_path);
@@ -14,6 +14,10 @@ function top_level(image_path, PSNR)
     % functions returns DCT of 8x8 blocks of image
     % formatted as MxNx3 double array
     dct_image = fwd_DCT(noisy_image);
+    
+    % determine quantized image data
+    % formatted as MxNx3 integer array
+    quant_image = quantizer(dct_image, qf);
     
     % compute mse
     mse = compute_mse(original_image, noisy_image);

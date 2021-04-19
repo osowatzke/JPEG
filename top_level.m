@@ -21,13 +21,22 @@ function top_level(image_path, PSNR, qf)
     
     % create huffman dictionary based on quantized image data
     huff_dict = create_huffman_dict(quant_image);
+        
+    % dequantize quantized image data
+    % also formatted as MxNx3 integer array
+    dequant_image = dequantizer(quant_image,qf);
     
-    % compute mse
+    % perform IDCT on 8x8 blocks of image
+    % returns MxNx3 uint8 array (same size as original image)
+    [r, c] = size(original_image(:,:,1));
+    idct_image = rev_IDCT(r,c,dct_image);
+    
+    % compute mse between 2 images 
     mse = compute_mse(original_image, noisy_image);
     % display MSE value
     fprintf('MSE = %.3f \n',mse);
     
-    % display difference image
+    % display difference image of 2 images
     diff_img(original_image,noisy_image);
     
 end

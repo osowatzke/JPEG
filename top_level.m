@@ -19,6 +19,9 @@ function top_level(image_path, PSNR, qf)
     % formatted as MxNx3 integer array
     quant_image = quantizer(dct_image, qf);
     
+    % create huffman dictionary based on quantized image data
+    huff_dict = create_huffman_dict(quant_image);
+    
     % compute mse
     mse = compute_mse(original_image, noisy_image);
     % display MSE value

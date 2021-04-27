@@ -19,9 +19,11 @@ function top_level(image_path, PSNR, qf)
     % formatted as MxNx3 integer array
     quant_image = quantizer(dct_image, qf);
     
-    % create huffman dictionary based on quantized image data
-    huff_dict = create_huffman_dict(quant_image);
-        
+    % create huffman dictionary and encode quantized image
+    [encoded_image, dict] = huffman_encoder(quant_image);
+    
+    fprintf("Encoded Image Size: %d Bytes\n", ceil(length(encoded_image)/8));
+    
     % dequantize quantized image data
     % also formatted as MxNx3 integer array
     dequant_image = dequantizer(quant_image,qf);

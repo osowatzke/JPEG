@@ -35,7 +35,8 @@ function imvector = zig_zag(imdata)
                 vec = reshape(block,1,64);
                 % zig-zag encode using incides found and save into image
                 % vector
-                imvector(64*(m+n+k-3)+1:64*(m+n+k-2)) = vec(I);
+                start_index = W*8*3*(m-1)+64*3*(n-1)+64*(k-1);
+                imvector(start_index+1:start_index+64) = vec(I);
             end
         end
     end      

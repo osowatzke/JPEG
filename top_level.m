@@ -12,9 +12,12 @@ function top_level(image_path, PSNR, qf)
     figure
     imshow(noisy_image);
     
+    % convert to YCbCr colorspace
+    ycbcr_image = rgb2ycbcr(noisy_image);
+    
     % functions returns DCT of 8x8 blocks of image
     % formatted as MxNx3 double array
-    dct_image = fwd_DCT(noisy_image);
+    dct_image = fwd_DCT(ycbcr_image);
     
     % determine quantized image data
     % formatted as MxNx3 integer array
@@ -39,9 +42,12 @@ function top_level(image_path, PSNR, qf)
     [r, c] = size(original_image(:,:,1));
     idct_image = rev_IDCT(r,c,dequant_image);
     
-    % determine resulting image
-    im_result = idct_image(1:length(original_image(:,1,1)), ...
+    % determine resulting image YCbCr
+    ycbcr_image = idct_image(1:length(original_image(:,1,1)), ...
         1:length(original_image(1,:,1)), :);
+    
+    % determine image results
+    im_result = ycbcr2rgb(ycbcr_image);
     
     % compute mse between 2 images 
     mse = compute_mse(original_image, im_result);

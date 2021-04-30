@@ -1,16 +1,21 @@
 
 % function takes PSNR and relative input path of image as an inputs
-function top_level(image_path, PSNR, qf)
+function [original_size, compressed_size, mse, im_result, diff] = ...
+    im_process(image_path, PSNR, qf)
     
     % read RGB components of images and format in MXNX3 array
     original_image = imread(image_path);
+    
+    % determine image size
+    [H, W, RGB] = size(original_image);
+    original_size = H*W*RGB;
     
     % add noise to image
     noisy_image = add_noise(original_image,PSNR);
     
     % display noisy image
-    figure
-    imshow(noisy_image);
+    %figure
+    %imshow(noisy_image);
     
     % convert to YCbCr colorspace
     ycbcr_image = rgb2ycbcr(noisy_image);
@@ -26,8 +31,11 @@ function top_level(image_path, PSNR, qf)
     % create huffman dictionary and encode quantized image
     [encoded_image, dict] = huffman_encoder(quant_image);
     
+    % determine compressed size
+    compressed_size = ceil(length(encoded_image)/8);
+    
     % output encoded image size
-    fprintf("Encoded Image Size: %d Bytes\n", ceil(length(encoded_image)/8));
+    fprintf("Encoded Image Size: %d Bytes\n", compressed_size);
     
     % decode image using huffman dictionary
     % image vector is reformed into MxNx3 integer array when decoding
@@ -55,9 +63,10 @@ function top_level(image_path, PSNR, qf)
     fprintf('MSE = %.3f \n',mse);
     
     % display difference image of 2 images
-    diff_img(original_image,noisy_image);
+    diff = diff_img(original_image,noisy_image);
     
     % display reconstructed image
-    figure
-    imshow(im_result);
+    %figure
+    %imshow(im_result);
+    
 end

@@ -4,11 +4,11 @@
 % order of image input does not matter, 
 % image inputs should share same format i.e. both -> uint8
 
-function diff_img(img1,img2)
+function diff = diff_img(img1,img2)
 
     % compute differences between noisy img and original img
     diff = imabsdiff(img1,img2);
     
     % display difference image
-    figure;
-    imshow(diff);
+    %figure;
+    %imshow(diff);

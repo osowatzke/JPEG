@@ -23,7 +23,6 @@ for jj = 1:length(psnr_array)
 end
 
 % plot MSE vs Q
-figure;
 hold on;
 for ii = 1:length(psnr_array)
     plot(qf_array,mse_array(ii,:),'DisplayName',['PSNR = ',num2str(psnr_array(ii))]);
@@ -34,4 +33,7 @@ ylabel('Mean Squared Error (MSE)');
 title('MSE vs Q');
 hold off;
 legend;
+if length(psnr_array) == 1
+    legend off;
+end
 end

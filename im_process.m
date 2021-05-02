@@ -1,6 +1,6 @@
 
 % function takes PSNR and relative input path of image as an inputs
-function [original_size, compressed_size, mse, im_result, diff] = ...
+function [original_size, compressed_size, mse, noisy_image, im_result, diff] = ...
     im_process(image_path, PSNR, qf)
     
     % read RGB components of images and format in MXNX3 array
@@ -35,7 +35,7 @@ function [original_size, compressed_size, mse, im_result, diff] = ...
     compressed_size = ceil(length(encoded_image)/8);
     
     % output encoded image size
-    fprintf("Encoded Image Size: %d Bytes\n", compressed_size);
+%     fprintf("Encoded Image Size: %d Bytes\n", compressed_size);
     
     % decode image using huffman dictionary
     % image vector is reformed into MxNx3 integer array when decoding
@@ -60,10 +60,10 @@ function [original_size, compressed_size, mse, im_result, diff] = ...
     % compute mse between 2 images 
     mse = compute_mse(original_image, im_result);
     % display MSE value
-    fprintf('MSE = %.3f \n',mse);
+%     fprintf('MSE = %.3f \n',mse);
     
     % display difference image of 2 images
-    diff = diff_img(original_image,noisy_image);
+    diff = imabsdiff(original_image,noisy_image);
     
     % display reconstructed image
     %figure

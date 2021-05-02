@@ -26,4 +26,5 @@ for ii = 1:length(qf_array)
     imshow(im_result);
     title(['Q = ',num2str(qf)])
 end
+end
 

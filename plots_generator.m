@@ -11,9 +11,9 @@ function plots_generator()
     figure; plot_mse_vs_q(image_path,psnr_array,qf_array);
     
     % 'Observing MSE for various Q values'
-    % plot MSE vs Q for image at minimal noise 
+    % plot MSE vs Q for image with no noise
     qf_array = [1,10:10:80]; % Q values
-    figure; plot_mse_vs_q(image_path,80,qf_array);
+    figure; plot_mse_vs_q(image_path,Inf,qf_array);
 
     % 'Given a noisy image, how well can the system remove the noise at 
     % different Q values?'
@@ -24,7 +24,7 @@ function plots_generator()
 
     % 'How much space can we save using different Q values?'
     qf_array = [1,10:10:80]; % Q values
-    PSNR = 80; % set noise of image
+    PSNR = Inf; % zero noise image
     % currently only takes in qf_array size 9 to generate 3x3 subplot
     plot_space(image_path,PSNR,qf_array);
 

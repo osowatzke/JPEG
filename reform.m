@@ -1,3 +1,13 @@
+% function forms MxNx3 array of quantized values from image vector 
+% perfom zig-zag decoding
+
+% inputs:
+%   imvector        1x(M*N*3) vector of quantized values
+%   imsize          size of input image
+
+% outputs:
+%   imdata          MxNx3 array of image data
+
 function imdata = reform(imvector, imsize) 
     
     % order of zig-zag indices in 8x8 block
@@ -14,7 +24,7 @@ function imdata = reform(imvector, imsize)
     zz1 = reshape(zigzag,1,64);
     
     % sort to determine index order
-    [~, I] = sort(zz1);
+    [~,I] = sort(zz1);
     
     % determine order of indices to reverse zig-zagging
     [~,I] = sort(I);

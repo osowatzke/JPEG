@@ -1,4 +1,14 @@
-function dequant_imdata = dequantizer(quant_imdata, qf)
+% function peforms dequantization of values output by huffman decoder
+
+% inputs:
+%   quant_array         MxNx3 array of quantized values
+%   qf                  Quality factor used to scale quantization table
+
+% outputs:
+%   dct_array           Array of dct values reconstructed from quantized
+%                       values
+
+function dct_array = dequantizer(quant_array, qf)
 
     % defualt Q
     Q = [16, 11, 10, 16, 24, 40, 51, 61; ...
@@ -16,19 +26,19 @@ function dequant_imdata = dequantizer(quant_imdata, qf)
     % modified quantization table
     Q = round(fqf.*Q);
 
-    dequant_imdata = zeros(size(quant_imdata));
+    dct_array = zeros(size(quant_array));
 
     % for each 8x8 block of RGB data calculate round(X[l,k]/Q[l,k])
-        for m = 1:length(quant_imdata(:,1,1))/8
-            for n = 1:length(quant_imdata(1,:,1))/8
-                for k = 1:3
-                    dequant_imdata(8*(m-1)+1:8*m,8*(n-1)+1:8*n,k) ...
-                        = (quant_imdata(8*(m-1)+1:8*m,8*(n-1)+1:8*n,k).*Q);
-                end
+    for  row = 1:length(quant_array(:,1,1))/8
+        for col = 1:length(quant_array(1,:,1))/8
+            for rgb = 1:3
+                dct_array(8*(row-1)+1:8*row,8*(col-1)+1:8*col,rgb) ...
+                    = quant_array(8*(row-1)+1:8*row,8*(col-1)+1:8*col,rgb).*Q;
             end
         end
+    end
         
-        
+end
         
         
         

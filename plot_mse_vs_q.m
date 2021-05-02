@@ -11,10 +11,13 @@ for jj = 1:length(psnr_array)
 
         % quality factor
         qf = qf_array(ii);
-
+        
+        % get MxNx3 array of data from image
+        input_im_array = imread(image_path);
+        
         % process image for various Q values 
         [~, ~, mse, ~, ~, ~] = ...
-        im_process(image_path, PSNR, qf);
+        im_process(input_im_array, PSNR, qf);
 
         % store MSE for corresponding Q value
         mse_array(jj,ii) = mse;

@@ -21,7 +21,7 @@ function gen_plots()
 
     % 'How much space can we save using different Q values?'
     qf_array = [1,10:10:80]; % Q values
-    PSNR = 80; % set noise of image
+    PSNR = Inf; % set noise of image
     % currently only takes in qf_array size 9 to generate 3x3 subplot
     sys_space(image_path,PSNR,qf_array);
 

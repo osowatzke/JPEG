@@ -3,8 +3,11 @@
 
 function plot_space(image_path, PSNR, qf_array)
 
+% get MxNx3 array of data from image
+input_im_array = imread(image_path);
+    
 qf = 0;  % Q doesn't matter here, doesn't affect the output we want
-[original_size,~,~,noisy_image,~,~] = im_process(image_path,PSNR,qf);
+[original_size,~,~,noisy_image,~,~] = im_process(input_im_array,PSNR,qf);
 
 % show minimal noise image 
 figure;
@@ -21,7 +24,7 @@ for ii = 1:length(qf_array)
     
     % process image for various PSNR values 
     [~, compressed_size, ~, ~, im_result, ~] = ...
-    im_process(image_path, PSNR, qf);
+    im_process(input_im_array, PSNR, qf);
     
 %     drawnow;
     subplot(3,3,ii);

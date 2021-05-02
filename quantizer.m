@@ -1,7 +1,15 @@
 % function calculates quantized image data
-function quant_imdata = quantizer(dct_imdata, qf)
+
+% inputs:
+%   dct_array           MxNx3 array of dct values
+%   qf                  Quality factor used to scale quantization table
+
+% outputs:
+%   quant_array         MxNx3 array of quantized values
+
+function quant_array = quantizer(dct_array, qf)
     
-    % defualt Q
+    % defualt quantization table 
     Q = [16, 11, 10, 16, 24, 40, 51, 61; ...
         12, 12, 14, 19, 26, 58, 60, 55; ...
         14, 13, 16, 24, 40, 57, 69, 56; ...
@@ -18,14 +26,14 @@ function quant_imdata = quantizer(dct_imdata, qf)
     Q = round(fqf.*Q);
     
     % empty array of quantized image data
-    quant_imdata = zeros(size(dct_imdata));
+    quant_array = zeros(size(dct_array));
     
     % for each 8x8 block of RGB data calculate round(X[l,k]/Q[l,k])
-    for m = 1:length(dct_imdata(:,1,1))/8
-        for n = 1:length(dct_imdata(1,:,1))/8
-            for k = 1:3
-                quant_imdata(8*(m-1)+1:8*m,8*(n-1)+1:8*n,k) ...
-                    = round(dct_imdata(8*(m-1)+1:8*m,8*(n-1)+1:8*n,k)./Q);
+    for row = 1:length(dct_array(:,1,1))/8
+        for col = 1:length(dct_array(1,:,1))/8
+            for rgb = 1:3
+                quant_array(8*(row-1)+1:8*row,8*(col-1)+1:8*col,rgb) ...
+                    = round(dct_array(8*(row-1)+1:8*row,8*(col-1)+1:8*col,rgb)./Q);
             end
         end
     end

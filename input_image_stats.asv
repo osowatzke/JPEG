@@ -1,0 +1,10 @@
+% function determines statistics of input 
+
+% inputs: 
+%   PSNR                Peak Signal to noise ratio
+%   input_im_array      MxNx3 uint8 image array
+
+% outputs:
+%   noisy_im_array      MxNx3 uint8 image array with additive white noise
+function [image_size, bytes_orig] = input_image_stats(input_im_array)
+end

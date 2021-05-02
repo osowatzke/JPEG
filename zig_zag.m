@@ -1,5 +1,12 @@
 % function takes a MxNx3 array and returns a 1x(M*N*3) vector
 % which is zig-zag encoded
+
+% inputs: 
+%   imdata          MxNx3 array of image data
+
+% outputs
+%   imvector        1x(M*N*3) vector of zig-zag encoded image data
+
 function imvector = zig_zag(imdata)
     
     % order of zig-zag indices in 8x8 block

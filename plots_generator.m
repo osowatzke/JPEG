@@ -1,4 +1,7 @@
 function plots_generator()
+    
+    % hardcode image_path
+    image_path = './test_images/cockatoo.jpg';
 
     % 'Finding the optimal Q value for images with different PSNR values'
     % plot MSE vs Q at different PSNR settings

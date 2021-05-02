@@ -1,0 +1,18 @@
+% function takes the encoded_image (binary vector) and huffman dictionary
+% and performs huffman decoding. The image size argument is used to form 
+% the quantized image from an image vector.
+
+% inputs:
+%   encoded_image       1xN vector of binary values
+%   huffman_dict        Huffman dictionary used for encoding and decoding 
+%   image_size          1x3 vector containing size of original image
+
+function quant_array = huffman_decoder(encoded_image, huffman_dict, image_size)
+    
+    % decode huffman image vector
+    imvector = huffmandeco(encoded_image,huffman_dict);
+   
+    % form MxNx3 image from image vector
+    quant_array = reform(imvector,image_size);
+    
+end

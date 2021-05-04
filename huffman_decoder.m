@@ -15,6 +15,9 @@ function quant_array = huffman_decoder(encoded_image, huffman_dict, image_size)
     % decode huffman image vector
     imvector = huffmandeco(encoded_image,huffman_dict);
     
+    % run length decoding on image vector
+    imvector = run_length_decoding(imvector);
+    
     % determine size of quantized image 
     % ensure rows and columns are multiples of 8
     quant_size = image_size;

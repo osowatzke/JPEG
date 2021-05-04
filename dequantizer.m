@@ -33,7 +33,8 @@ function dct_array = dequantizer(quant_array, qf)
         for col = 1:length(quant_array(1,:,1))/8
             for rgb = 1:3
                 dct_array(8*(row-1)+1:8*row,8*(col-1)+1:8*col,rgb) ...
-                    = quant_array(8*(row-1)+1:8*row,8*(col-1)+1:8*col,rgb).*Q;
+                    = quant_array(8*(row-1)+1:8*row,...
+                    8*(col-1)+1:8*col,rgb).*Q;
             end
         end
     end

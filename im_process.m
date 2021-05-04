@@ -16,8 +16,8 @@
 %   diff                    difference image between input_im_array and 
 %                           out_im_array
 
-function [bytes_orig, bytes_compressed, mse, noisy_im_array, out_im_array, diff] = ...
-    im_process(input_im_array, PSNR, qf)
+function [bytes_orig, bytes_compressed, mse, noisy_im_array, ...
+    out_im_array, diff] = im_process(input_im_array, PSNR, qf)
     
     % get statistics of input image size and size in bytes
     [image_size, bytes_orig] = input_image_stats(input_im_array);

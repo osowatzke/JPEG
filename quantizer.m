@@ -33,7 +33,8 @@ function quant_array = quantizer(dct_array, qf)
         for col = 1:length(dct_array(1,:,1))/8
             for rgb = 1:3
                 quant_array(8*(row-1)+1:8*row,8*(col-1)+1:8*col,rgb) ...
-                    = round(dct_array(8*(row-1)+1:8*row,8*(col-1)+1:8*col,rgb)./Q);
+                    = round(dct_array(8*(row-1)+1:8*row,...
+                    8*(col-1)+1:8*col,rgb)./Q);
             end
         end
     end
